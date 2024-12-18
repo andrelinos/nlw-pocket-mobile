@@ -1,4 +1,11 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center" id="top">
+  <img src="./.github/thumbnail.png" alt="Nearby" />
+
+  &#xa0;
+
+</div>
+
+<h1 align="center">Nearby - CP</h1>
 
 ## Getting Started
 
@@ -11,7 +18,7 @@ yarn dev
 # or
 pnpm dev
 # or
-bun dev
+npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
