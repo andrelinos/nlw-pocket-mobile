@@ -1,0 +1,254 @@
+import { MarketsController } from '@/controllers/markets-controller'
+import { Router } from 'express'
+
+const marketsRoutes = Router()
+const marketsController = new MarketsController()
+
+/**
+ * @swagger
+ * /markets/category/{category_id}:
+ *   get:
+ *     summary: List all markets from a category
+ *     parameters:
+ *       - in: path
+ *         name: category_id
+ *         required: true
+ *         description: category id
+ *         schema:
+ *           type: string
+ *     responses:
+ *       '200':
+ *         description: List all markets from a category
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: string
+ *                   name:
+ *                     type: string
+ *                   category:
+ *                     type: string
+ *     tags:
+ *       - Markets
+ */
+marketsRoutes.get('/category/:category_id', marketsController.index)
+
+/**
+ * @swagger
+ * /markets/{id}:
+ *   get:
+ *     summary: Get market by id
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: market id
+ *         schema:
+ *           type: string
+ *     responses:
+ *       '200':
+ *         description: Get market by id
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: string
+ *                 name:
+ *                   type: string
+ *                 category:
+ *                   type: string
+ *       '404':
+ *         description: Market not found!
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Market not found!
+ *     tags:
+ *       - Markets
+ */
+marketsRoutes.get('/:id', marketsController.show)
+
+/**
+ * @swagger
+ * /markets:
+ *   post:
+ *     summary: Create a new market
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               categoryId:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *               coupons:
+ *                 type: number
+ *               latitude:
+ *                 type: number
+ *               longitude:
+ *                 type: number
+ *               address:
+ *                 type: string
+ *               phone:
+ *                 type: string
+ *               cover:
+ *                 type: string
+ *     responses:
+ *       '201':
+ *         description: Market created
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: string
+ *                 name:
+ *                   type: string
+ *                 categoryId:
+ *                   type: string
+ *                 description:
+ *                   type: string
+ *                 coupons:
+ *                   type: number
+ *                 latitude:
+ *                   type: number
+ *                 longitude:
+ *                   type: number
+ *                 address:
+ *                   type: string
+ *                 phone:
+ *                   type: string
+ *                 cover:
+ *                   type: string
+ *     tags:
+ *       - Markets
+ */
+marketsRoutes.post('/', marketsController.create)
+
+/**
+ * @swagger
+ * /markets/{id}:
+ *   put:
+ *     summary: Update market by id
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: market id
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               categoryId:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *               coupons:
+ *                 type: number
+ *               latitude:
+ *                 type: number
+ *               longitude:
+ *                 type: number
+ *               address:
+ *                 type: string
+ *               phone:
+ *                 type: string
+ *               cover:
+ *                 type: string
+ *     responses:
+ *       '200':
+ *         description: Market updated
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: string
+ *                 name:
+ *                   type: string
+ *                 categoryId:
+ *                   type: string
+ *                 description:
+ *                   type: string
+ *                 coupons:
+ *                   type: number
+ *                 latitude:
+ *                   type: number
+ *                 longitude:
+ *                   type: number
+ *                 address:
+ *                   type: string
+ *                 phone:
+ *                   type: string
+ *                 cover:
+ *                   type: string
+ *       '404':
+ *         description: Market not found!
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Market not found!
+ *     tags:
+ *       - Markets
+ */
+marketsRoutes.put('/:id', marketsController.update)
+
+/**
+ * @swagger
+ * /markets/{id}:
+ *   delete:
+ *     summary: Delete market by id
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: market id
+ *         schema:
+ *           type: string
+ *     responses:
+ *       '204':
+ *         description: Market deleted
+ *       '404':
+ *         description: Market not found!
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Market not found!
+ *     tags:
+ *       - Markets
+ */
+marketsRoutes.delete('/:id', marketsController.delete)
+
+export { marketsRoutes }
